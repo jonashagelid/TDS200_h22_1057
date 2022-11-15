@@ -7,7 +7,6 @@ import { useRouter } from 'vue-router';
 
 
 const router = useRouter();
-
 const registerMode = ref(false);
 
 const setRegisterMode = () => {
@@ -19,7 +18,6 @@ const setRegisterMode = () => {
         console.log(registerMode.value)
     }
 }
-
 
 const userDetails = ref({
     firstName: '',
@@ -70,10 +68,10 @@ const register = async () => {
             <label>Login</label>
         </ion-list-header>
         <ion-item lines="none" v-if="registerMode">
-            <IonButton @click="setRegisterMode">Already registered?</IonButton>
+            <IonButton fill="outline" @click="setRegisterMode">Already registered?</IonButton>
         </ion-item>
         <ion-item lines="none" v-else>
-            <IonButton @click="setRegisterMode">New user?</IonButton>
+            <IonButton fill="outline" @click="setRegisterMode">New user?</IonButton>
         </ion-item>
 
         <ion-item v-if="registerMode">
@@ -91,17 +89,13 @@ const register = async () => {
             <ion-input type="password" v-model="userDetails.password"></ion-input>
         </ion-item>
 
-        <IonButton v-if="registerMode" @click="register">
+        <IonButton fill="outline" v-if="registerMode" @click="register">
             Register user
         </IonButton>
 
-        <IonButton v-else @click="login">
+        <IonButton fill="outline" v-else @click="login">
             Log in
         </IonButton>
-
-
-
-
       </ion-list>
     </ion-content>
   </ion-page>

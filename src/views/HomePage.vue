@@ -1,23 +1,22 @@
 <script setup lang="ts">
 
 import { directus } from '@/services/directus.services';
-import { IonContent, IonSearchbar, IonFooter, RefresherCustomEvent, IonMenuButton, IonMenuToggle, IonAccordion, IonMenu, IonModal, IonLabel, IonTextarea, IonItem, IonRefresher, IonRefresherContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonCardSubtitle, IonButtons, IonButton, onIonViewDidEnter } from '@ionic/vue';
+import { IonContent, IonSearchbar, IonFooter, RefresherCustomEvent, IonRefresher, IonRefresherContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonCardSubtitle, IonButtons, IonButton, onIonViewDidEnter } from '@ionic/vue';
 import { ref } from 'vue';
 
-
-
-const userAccessToken = localStorage.getItem('auth_token');
-const modalOpen = ref(false);
 
 const listedGames = ref([]);
 
 const searchResults = ref([]);
+
 
 //Calls fetchGamesList upon opening home page
 onIonViewDidEnter( () =>{
   fetchGamesList();
 });
 
+
+//refreshes homepage
 const refreshGamesList = async (event: RefresherCustomEvent) => {
   await fetchGamesList();
   event.target.complete();
@@ -55,7 +54,6 @@ const handleChange = (event:any) => {
   searchResults.value = listedGames.value.filter(game => game.title.toLowerCase().indexOf(query) > -1);
   console.log(searchResults.value)
 }
-
 
 
 </script>
@@ -141,7 +139,7 @@ const handleChange = (event:any) => {
 
   ion-card-title {
     --color: black;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 25px;
     padding: 5px;
     font-weight: bold;
@@ -150,7 +148,7 @@ const handleChange = (event:any) => {
 
   ion-card-subtitle {
     --color: black;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 25px;
     padding: 5px;
     margin: 5px;

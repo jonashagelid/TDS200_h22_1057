@@ -1,13 +1,10 @@
 <script setup lang="ts">
 
 import { directus } from '@/services/directus.services';
-import { IonContent, IonList, IonListHeader, IonFooter, IonMenuButton, IonMenuToggle, IonAccordion, IonMenu, IonModal, IonLabel, IonTextarea, IonItem, IonRefresher, IonRefresherContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonCardSubtitle, IonButtons, IonButton, onIonViewDidEnter } from '@ionic/vue';
+import { IonContent, IonList, IonListHeader, IonFooter, IonHeader, IonPage, IonTitle, IonToolbar, IonCardContent, IonCardSubtitle, IonButtons, IonButton, onIonViewDidEnter } from '@ionic/vue';
 import { ref, resolveDirective } from 'vue';
 
 
-
-const userAccessToken = localStorage.getItem('auth_token');
-const modalOpen = ref(false);
 const userInfo = ref({});
 
 
@@ -56,17 +53,16 @@ const logout = async () => {
         <ion-card-content>
           <ion-list>
             <ion-list-header>
-
+              User profile
             </ion-list-header>
             <ion-card-subtitle>Name: {{userInfo.first_name}}</ion-card-subtitle>
             <ion-card-subtitle>Email: {{userInfo.email}}</ion-card-subtitle>
-            <ion-buttons>
-              <ion-button fill="outline" @click="logout">Logout</ion-button>
+            <ion-buttons class="logout-btn">
+              <ion-button fill="outline" @click="logout" :router-link="'/home'">Logout</ion-button>
             </ion-buttons>
           </ion-list>
         </ion-card-content>
     </ion-content>
-
 
     <ion-footer :translucent="true">
       <ion-toolbar>
@@ -75,6 +71,18 @@ const logout = async () => {
         </ion-buttons>
       </ion-toolbar>
     </ion-footer>
-
   </ion-page>
 </template>
+
+
+<style>
+  ion-list-header {
+    font-weight: bolder;
+    font-size: larger;
+    text-align: center;
+  }
+
+  .logout-btn {
+    justify-content: center;
+  }
+</style>

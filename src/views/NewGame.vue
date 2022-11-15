@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { authServce, directus } from '@/services/directus.services';
-import {  IonInput, toastController, IonTextarea, IonLabel, IonListHeader, IonItem, IonList, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonCardSubtitle, IonButtons, IonButton } from '@ionic/vue';
+import {  IonInput, toastController, IonTextarea, IonLabel, IonListHeader, IonItem, IonList, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton } from '@ionic/vue';
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 import { Camera, CameraResultType } from '@capacitor/camera'
-import { is } from '@babel/types';
+
 
 
 const isUploading = ref(false);
@@ -19,7 +18,6 @@ const newListing = ref({
     image: "",
     address: ""
 });
-
 
 //Create new post in DB
 const createNewListing = async () => {
@@ -60,9 +58,8 @@ const createNewListing = async () => {
 
             await successToast.present();
         }
-
-
         isUploading.value = false;
+
     }catch(error){
         const errorToast = await toastController.create({
             message: 'Listing failed',
@@ -125,7 +122,6 @@ const removeImage = () => {
             </ion-buttons>
         </ion-item>
 
-
         <ion-item>
             <ion-label position="floating">Title:</ion-label>
             <ion-input type="text" v-model="newListing.title"></ion-input>
@@ -159,10 +155,6 @@ const removeImage = () => {
         <IonButton fill="outline" @click="createNewListing" :router-link="'/home'">
             Submit
         </IonButton>
-
-
-
-
       </ion-list>
     </ion-content>
   </ion-page>

@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { IonModal, IonFooter, toastController, IonSpinner, IonCardTitle, IonTextarea, IonBackButton, IonButton, IonAvatar, IonText, IonIcon, IonItem, IonListHeader, IonLabel, IonList, IonCardHeader, IonCardSubtitle, IonButtons, IonCard, IonCardContent, IonChip, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, onIonViewDidEnter } from "@ionic/vue";
+import { IonFooter, IonCardTitle, IonButton, IonCardHeader, IonCardSubtitle, IonButtons, IonCard, IonCardContent, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, onIonViewDidEnter } from "@ionic/vue";
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { directus } from "@/services/directus.services";
  
 const route = useRoute();
 const { id } = route.params;
-const userAccessToken = localStorage.getItem('auth_token');
 const listedGame = ref({});
 
 onIonViewDidEnter(() => {
@@ -38,7 +37,6 @@ const fetchGame = async () => {
   });
 }
 
-
 </script>
 
 
@@ -46,13 +44,12 @@ const fetchGame = async () => {
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>{{listedGame.title}} {{id}}</ion-title>
+        <ion-title>{{listedGame.title}}</ion-title>
       </ion-toolbar>
     </ion-header>
     
     <ion-content :fullscreen="true">
       <ion-card>
-        
         <img v-if="listedGame.image" :src="`https://kcwe8gkm.directus.app/assets/${listedGame.image?.id}`"/>
         <ion-card-header>
           <ion-card-title>Title: {{listedGame.title}} </ion-card-title>
@@ -63,6 +60,8 @@ const fetchGame = async () => {
         </ion-card-header>
         <ion-card-content>
           <div class="description">
+            Description:
+            <br>
             {{listedGame.description}}
           </div>
         </ion-card-content>
@@ -84,14 +83,10 @@ const fetchGame = async () => {
 
 
 <style>
-
-
   img {
     padding: 15px;
     min-width: 100%;
   }
-
-  
 
   ion-card {
     --background: url(../../public/assets/images/background.jpg) 0 0/100% 100% no-repeat;
@@ -101,7 +96,7 @@ const fetchGame = async () => {
 
   ion-card-title {
     --color: black;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 25px;
     padding: 5px;
     font-weight: bold;
@@ -110,17 +105,17 @@ const fetchGame = async () => {
 
   ion-card-subtitle {
     --color: black;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 25px;
     padding: 5px;
     margin: 5px;
     font-weight: bold;
     text-align: center;
   }
-
+  
   .description {
     color: black;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 25px;
     padding: 5px;
     margin: 5px;
